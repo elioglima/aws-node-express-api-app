@@ -1,3 +1,4 @@
+const usersRoute = require('./users/index');
 const express = require('express');
 
 const routes = express.Router({
@@ -9,6 +10,7 @@ routes.get('/', (req, res) => {
   res.status(200).json({ success: true });
 });
 
-module.exports = {
-  routes,
+module.exports = (app) => {
+  app.use('/api', routes);
+  app.use('/api', usersRoute);
 };
